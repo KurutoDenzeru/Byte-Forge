@@ -8,4 +8,9 @@ export default defineNuxtConfig({
 			autoprefixer: {},
 		},
 	},
+	routeRules: {
+		// Homepage pre-rendered at build time
+		"/": { prerender: true },
+	},
+	modules: ["@nuxtjs/tailwindcss"],
 });
