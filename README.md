@@ -1,2 +1,13 @@
 # 💿 Universal-Rom-Patcher
- Enhanced IPS/UPS/APS/BPS/RUP/PPF/xdelta ROM patcher, now developed with Nuxt JS and styled with Tailwind. This advanced web-based tool simplifies the patching process for ROM files, offering an intuitive user interface and improved performance.
+Enhanced ROM patcher for IPS/UPS/APS/BPS/RUP/PPF/xdelta formats, built with Nuxt JS and Tailwind. Features patch creation, automatic unzipping, header removal, and shows ROM CRC32, MD5, and SHA-1. Compatible with all modern web browsers, including mobile.
+
+**Features:**
+* Supported formats:
+   * IPS
+   * UPS
+   * APS (N64/GBA)
+   * BPS
+   * RUP
+   * PPF
+   * Paper Mario Star Rod (.mod)
+   * VCDiff (.xdelta, .vcdiff)
