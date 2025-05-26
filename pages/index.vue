@@ -1,15 +1,22 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
-    <div class="w-full max-w-md">
-      <!-- Header -->
-      <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-          Universal ROM Patcher
-        </h1>
-        <p class="text-gray-600 dark:text-gray-400">
-          Apply patches to your ROM files with ease
-        </p>
-      </div>
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col">
+    <!-- Top navigation with theme switcher -->
+    <div class="flex justify-end p-4">
+      <ThemeSwitcher />
+    </div>
+    
+    <!-- Main content -->
+    <div class="flex-1 flex items-center justify-center p-4">
+      <div class="w-full max-w-md">
+        <!-- Header -->
+        <div class="text-center mb-8">
+          <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            Universal ROM Patcher
+          </h1>
+          <p class="text-gray-600 dark:text-gray-400">
+            Apply patches to your ROM files with ease
+          </p>
+        </div>
 
       <!-- Main Card -->
       <Card class="shadow-lg">
@@ -105,13 +112,12 @@
             <span v-else>Apply Patch</span>
           </Button>
         </CardFooter>
-      </Card>
-
-      <!-- Footer -->
+      </Card>      <!-- Footer -->
       <div class="mt-8 text-center">
         <p class="text-sm text-gray-500 dark:text-gray-400">
           Supported formats: IPS, UPS, BPS, xDelta patches
         </p>
+      </div>
       </div>
     </div>
   </div>
@@ -123,6 +129,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
 
 // File references
 const romFile = ref<File | null>(null)
