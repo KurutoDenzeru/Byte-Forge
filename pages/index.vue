@@ -1,10 +1,12 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col">
-    <!-- Top navigation with theme switcher -->
-    <div class="flex justify-end p-4">
+  <div
+    class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col">
+    <!-- Top navigation with theme switcher and creator mode -->
+    <div class="flex justify-end items-center p-4">
+
       <ThemeSwitcher />
     </div>
-    
+
     <!-- Main content -->
     <div class="flex-1 flex items-center justify-center p-4">
       <div class="w-full max-w-md">
@@ -18,106 +20,130 @@
           </p>
         </div>
 
-      <!-- Main Card -->
-      <Card class="shadow-lg">
-        <CardHeader>
-          <CardTitle class="text-xl text-center">ROM Patcher</CardTitle>
-          <CardDescription class="text-center">
-            Upload your ROM and patch files to get started
-          </CardDescription>
-        </CardHeader>
-        
-        <CardContent class="space-y-6">
-          <!-- ROM File Upload -->
-          <div class="space-y-2">
-            <Label for="rom-file">ROM File</Label>
-            <div class="flex items-center space-x-2">
-              <Input
-                id="rom-file"
-                type="file"
-                accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
-                ref="romFileInput"
-                @change="handleRomFileChange"
-                class="flex-1"
-              />
-            </div>
-            <p class="text-sm text-gray-500 dark:text-gray-400">
-              {{ romFileName || 'No File Chosen' }}
-            </p>
-          </div>
+        <!-- Main Card -->
+        <div class="flex items-center space-x-3 space-y-3 justify-end">
+          <Label for="creator-mode" class="text-sm font-medium">Creator Mode</Label>
+          <Switch id="creator-mode" class="mb-3" v-model:checked="isCreatorMode" />
+        </div>
+        <Card class="shadow-lg">
+          <CardHeader>
+            <CardTitle class="text-xl text-center">
+              {{ isCreatorMode ? 'Patch Creator' : 'ROM Patcher' }}
+            </CardTitle>
+            <CardDescription class="text-center">
+              {{ isCreatorMode ? 'Create patches from ROM differences' : 'Upload your ROM and patch files to get started' }}
+            </CardDescription>
+          </CardHeader>
+          <CardContent class="space-y-6">
+            <!-- Patcher Mode Content -->
+            <div v-if="!isCreatorMode">
+              <!-- ROM File Upload -->
+              <div class="space-y-2">
+                <Label for="rom-file">ROM File</Label>
+                <div class="flex items-center space-x-2">
+                  <Input id="rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
+                    ref="romFileInput" @change="handleRomFileChange" class="flex-1" />
+                </div>
+                <!-- <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ romFileName || 'No File Chosen' }}
+              </p> -->
+              </div>
 
-          <!-- File Hashes -->
-          <div class="grid grid-cols-1 gap-4">
-            <div class="space-y-2">
-              <Label for="crc32">CRC32</Label>
-              <Input
-                id="crc32"
-                v-model="fileHashes.crc32"
-                placeholder="CRC32 hash will appear here"
-                readonly
-                class="font-mono text-sm"
-              />
-            </div>
-            
-            <div class="space-y-2">
-              <Label for="md5">MD5</Label>
-              <Input
-                id="md5"
-                v-model="fileHashes.md5"
-                placeholder="MD5 hash will appear here"
-                readonly
-                class="font-mono text-sm"
-              />
-            </div>
-            
-            <div class="space-y-2">
-              <Label for="sha1">SHA-1</Label>
-              <Input
-                id="sha1"
-                v-model="fileHashes.sha1"
-                placeholder="SHA-1 hash will appear here"
-                readonly
-                class="font-mono text-sm"
-              />
-            </div>
-          </div>
+              <!-- File Hashes -->
+              <div class="grid grid-cols-1 gap-4">
+                <div class="space-y-2">
+                  <Label for="crc32">CRC32</Label>
+                  <Input id="crc32" v-model="fileHashes.crc32" placeholder="CRC32 hash will appear here" readonly
+                    class="font-mono text-sm" />
+                </div>
 
-          <!-- Patch File Upload -->
-          <div class="space-y-2">
-            <Label for="patch-file">Patch File</Label>
-            <div class="flex items-center space-x-2">
-              <Input
-                id="patch-file"
-                type="file"
-                accept=".ips,.ups,.bps,.xdelta,.patch"
-                ref="patchFileInput"
-                @change="handlePatchFileChange"
-                class="flex-1"
-              />
-            </div>
-            <p class="text-sm text-gray-500 dark:text-gray-400">
-              {{ patchFileName || 'No File Chosen' }}
-            </p>
-          </div>
-        </CardContent>
+                <div class="space-y-2">
+                  <Label for="md5">MD5</Label>
+                  <Input id="md5" v-model="fileHashes.md5" placeholder="MD5 hash will appear here" readonly
+                    class="font-mono text-sm" />
+                </div>
 
-        <CardFooter>
-          <Button 
-            @click="applyPatch" 
-            :disabled="!romFile || !patchFile || isProcessing"
-            class="w-full"
-            size="lg"
-          >
-            <span v-if="isProcessing">Processing...</span>
-            <span v-else>Apply Patch</span>
-          </Button>
-        </CardFooter>
-      </Card>      <!-- Footer -->
-      <div class="mt-8 text-center">
-        <p class="text-sm text-gray-500 dark:text-gray-400">
-          Supported formats: IPS, UPS, BPS, xDelta patches
-        </p>
-      </div>
+                <div class="space-y-2">
+                  <Label for="sha1">SHA-1</Label>
+                  <Input id="sha1" v-model="fileHashes.sha1" placeholder="SHA-1 hash will appear here" readonly
+                    class="font-mono text-sm" />
+                </div>
+              </div>
+
+              <!-- Patch File Upload -->
+              <div class="space-y-2">
+                <Label for="patch-file">Patch File</Label>
+                <div class="flex items-center space-x-2">
+                  <Input id="patch-file" type="file" accept=".ips,.ups,.bps,.xdelta,.patch" ref="patchFileInput"
+                    @change="handlePatchFileChange" class="flex-1" />
+                </div>
+                <!-- <p class="text-sm text-gray-500 dark:text-gray-400">
+                {{ patchFileName || 'No File Chosen' }}
+              </p> -->
+              </div>
+            </div>
+
+            <!-- Creator Mode Content -->
+            <div v-else>
+              <!-- Original ROM File Upload -->
+              <div class="space-y-2">
+                <Label for="original-rom-file">Original ROM</Label>
+                <div class="flex items-center space-x-2">
+                  <Input id="original-rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
+                    ref="originalRomFileInput" @change="handleOriginalRomFileChange" class="flex-1" />
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  {{ originalRomFileName || 'No File Chosen' }}
+                </p>
+              </div>
+
+              <!-- Modified ROM File Upload -->
+              <div class="space-y-2">
+                <Label for="modified-rom-file">Modified ROM</Label>
+                <div class="flex items-center space-x-2">
+                  <Input id="modified-rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
+                    ref="modifiedRomFileInput" @change="handleModifiedRomFileChange" class="flex-1" />
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  {{ modifiedRomFileName || 'No File Chosen' }}
+                </p>
+              </div>
+
+              <!-- Patch Type Selection -->
+              <div class="space-y-2">
+                <Label for="patch-type">Patch Type</Label>
+                <Select v-model="selectedPatchType">
+                  <SelectTrigger id="patch-type">
+                    <SelectValue placeholder="Select patch type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="ips">IPS</SelectItem>
+                    <SelectItem value="bps">BPS</SelectItem>
+                    <SelectItem value="ppf">PPF</SelectItem>
+                    <SelectItem value="ups">UPS</SelectItem>
+                    <SelectItem value="aps">APS</SelectItem>
+                    <SelectItem value="rup">RUP</SelectItem>
+                    <SelectItem value="ebp">EBP</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button @click="isCreatorMode ? createPatch() : applyPatch()"
+              :disabled="isCreatorMode ? (!originalRomFile || !modifiedRomFile || !selectedPatchType || isProcessing) : (!romFile || !patchFile || isProcessing)"
+              class="w-full" size="lg">
+              <span v-if="isProcessing">Processing...</span>
+              <span v-else-if="isCreatorMode">Create Patch</span>
+              <span v-else>Apply Patch</span>
+            </Button>
+          </CardFooter>
+        </Card> <!-- Footer -->
+        <div class="mt-8 text-center">
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Supported formats: IPS, UPS, BPS, xDelta patches
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -129,13 +155,26 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import { Switch } from '@/components/ui/switch'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
 
-// File references
+// Creator mode toggle
+const isCreatorMode = ref(false)
+
+// File references for patcher mode
 const romFile = ref<File | null>(null)
 const patchFile = ref<File | null>(null)
 const romFileName = ref<string>('')
 const patchFileName = ref<string>('')
+
+// File references for creator mode
+const originalRomFile = ref<File | null>(null)
+const modifiedRomFile = ref<File | null>(null)
+const originalRomFileName = ref<string>('')
+const modifiedRomFileName = ref<string>('')
+const selectedPatchType = ref<string>('')
+
 const isProcessing = ref(false)
 
 // File hashes
@@ -148,8 +187,10 @@ const fileHashes = reactive({
 // Template refs
 const romFileInput = ref<HTMLInputElement>()
 const patchFileInput = ref<HTMLInputElement>()
+const originalRomFileInput = ref<HTMLInputElement>()
+const modifiedRomFileInput = ref<HTMLInputElement>()
 
-// Handle ROM file selection
+// Handle ROM file selection (patcher mode)
 const handleRomFileChange = async (event: Event) => {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
@@ -167,7 +208,7 @@ const handleRomFileChange = async (event: Event) => {
   }
 }
 
-// Handle patch file selection
+// Handle patch file selection (patcher mode)
 const handlePatchFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
@@ -178,6 +219,34 @@ const handlePatchFileChange = (event: Event) => {
   } else {
     patchFile.value = null
     patchFileName.value = ''
+  }
+}
+
+// Handle original ROM file selection (creator mode)
+const handleOriginalRomFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  const file = target.files?.[0]
+  
+  if (file) {
+    originalRomFile.value = file
+    originalRomFileName.value = file.name
+  } else {
+    originalRomFile.value = null
+    originalRomFileName.value = ''
+  }
+}
+
+// Handle modified ROM file selection (creator mode)
+const handleModifiedRomFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  const file = target.files?.[0]
+  
+  if (file) {
+    modifiedRomFile.value = file
+    modifiedRomFileName.value = file.name
+  } else {
+    modifiedRomFile.value = null
+    modifiedRomFileName.value = ''
   }
 }
 
@@ -204,7 +273,7 @@ const resetHashes = () => {
   fileHashes.sha1 = ''
 }
 
-// Apply patch function
+// Apply patch function (patcher mode)
 const applyPatch = async () => {
   if (!romFile.value || !patchFile.value) {
     return
@@ -224,6 +293,31 @@ const applyPatch = async () => {
   } catch (error) {
     console.error('Error applying patch:', error)
     alert('Error applying patch. Please try again.')
+  } finally {
+    isProcessing.value = false
+  }
+}
+
+// Create patch function (creator mode)
+const createPatch = async () => {
+  if (!originalRomFile.value || !modifiedRomFile.value || !selectedPatchType.value) {
+    return
+  }
+  
+  isProcessing.value = true
+  
+  try {
+    // Placeholder for patch creation logic
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    
+    // Here you would implement the actual patch creation logic
+    console.log('Creating', selectedPatchType.value.toUpperCase(), 'patch from:', originalRomFile.value.name, 'to:', modifiedRomFile.value.name)
+    
+    // Show success message or download result
+    alert(`${selectedPatchType.value.toUpperCase()} patch created successfully!`)
+  } catch (error) {
+    console.error('Error creating patch:', error)
+    alert('Error creating patch. Please try again.')
   } finally {
     isProcessing.value = false
   }
