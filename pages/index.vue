@@ -2,8 +2,7 @@
   <div
     class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col">
     <!-- Top navigation with theme switcher and creator mode -->
-    <div class="flex justify-end items-center p-4">
-
+    <div class="fixed top-4 right-4 z-50">
       <ThemeSwitcher />
     </div>
 
