@@ -18,12 +18,10 @@
           <p class="text-gray-600 dark:text-gray-400">
             Apply patches to your ROM files with ease
           </p>
-        </div>
-
-        <!-- Main Card -->
-        <div class="flex items-center space-x-3 space-y-3 justify-end">
+        </div>        <!-- Main Card -->
+        <div class="flex items-center space-x-3 justify-end mb-4">
           <Label for="creator-mode" class="text-sm font-medium">Creator Mode</Label>
-          <Switch id="creator-mode" class="mb-3" v-model:checked="isCreatorMode" />
+          <Switch id="creator-mode" v-model="isCreatorMode" />
         </div>
         <Card class="shadow-lg">
           <CardHeader>
@@ -44,7 +42,8 @@
                   <Input id="rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
                     ref="romFileInput" @change="handleRomFileChange" class="flex-1" />
                 </div>
-              </div>              <!-- File Hashes -->
+              </div>
+              <!-- File Hashes -->
               <div class="grid grid-cols-1">
                 <div class="flex items-center space-x-2">
                   <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-8">CRC32:</Label>
@@ -75,44 +74,35 @@
                   <Input id="patch-file" type="file" accept=".ips,.ups,.bps,.xdelta,.patch" ref="patchFileInput"
                     @change="handlePatchFileChange" class="flex-1" />
                 </div>
-                <!-- <p class="text-sm text-gray-500 dark:text-gray-400">
-                {{ patchFileName || 'No File Chosen' }}
-              </p> -->
               </div>
             </div>
 
             <!-- Creator Mode Content -->
             <div v-else>
               <!-- Original ROM File Upload -->
-              <div class="space-y-2">
+              <div class="space-y-2 pb-4">
                 <Label for="original-rom-file">Original ROM</Label>
                 <div class="flex items-center space-x-2">
                   <Input id="original-rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
                     ref="originalRomFileInput" @change="handleOriginalRomFileChange" class="flex-1" />
                 </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400">
-                  {{ originalRomFileName || 'No File Chosen' }}
-                </p>
               </div>
 
               <!-- Modified ROM File Upload -->
-              <div class="space-y-2">
+              <div class="space-y-2 pb-4">
                 <Label for="modified-rom-file">Modified ROM</Label>
                 <div class="flex items-center space-x-2">
                   <Input id="modified-rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
                     ref="modifiedRomFileInput" @change="handleModifiedRomFileChange" class="flex-1" />
                 </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400">
-                  {{ modifiedRomFileName || 'No File Chosen' }}
-                </p>
               </div>
 
               <!-- Patch Type Selection -->
-              <div class="space-y-2">
-                <Label for="patch-type">Patch Type</Label>
-                <Select v-model="selectedPatchType">
+              <div class="flex items-center space-x-2">
+                <Label for="patch-type" class="min-w-[80px]">Patch Type:</Label>
+                <Select v-model="selectedPatchType" class="flex-1">
                   <SelectTrigger id="patch-type">
-                    <SelectValue placeholder="Select patch type" />
+                    <SelectValue placeholder="Select patch type"/>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="ips">IPS</SelectItem>
@@ -125,6 +115,7 @@
                   </SelectContent>
                 </Select>
               </div>
+              
             </div>
           </CardContent>
           <CardFooter>
@@ -171,7 +162,7 @@ const originalRomFile = ref<File | null>(null)
 const modifiedRomFile = ref<File | null>(null)
 const originalRomFileName = ref<string>('')
 const modifiedRomFileName = ref<string>('')
-const selectedPatchType = ref<string>('')
+const selectedPatchType = ref<string>('ips')
 
 const isProcessing = ref(false)
 
