@@ -24,7 +24,7 @@
 
     <!-- Main content -->
     <div class="flex-1 flex items-center justify-center p-4">
-      <div class="w-full max-w-md">
+      <div class="w-full max-w-lg">
         <!-- Header -->
         <div class="text-center mb-8">
           <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -37,16 +37,18 @@
         <!-- Main Card -->
         <div class="flex items-center space-x-3 justify-end mb-4">
           <Label for="creator-mode" class="text-sm font-medium cursor-pointer">Creator Mode</Label>
-          <Switch id="creator-mode" class="cursor-pointer" v-model="isCreatorMode" />
+          <Switch id="creator-mode"
+            class="cursor-pointer data-[state=checked]:bg-emerald-600 hover:data-[state=checked]:bg-emerald-500"
+            v-model="isCreatorMode" />
         </div>
         <Card class="shadow-lg">
           <CardHeader>
             <CardTitle class="text-xl text-center">
               {{ isCreatorMode ? 'Patch Creator' : 'ROM Patcher' }}
             </CardTitle>
-            <CardDescription class="text-center">
+            <!-- <CardDescription class="text-center">
               {{ isCreatorMode ? 'Create patches from ROM differences' : 'Upload your ROM and patch files to get started' }}
-            </CardDescription>
+            </CardDescription> -->
           </CardHeader>
           <CardContent class="space-y-6">
             <!-- Patcher Mode Content -->
@@ -143,7 +145,8 @@
               <span v-else>Apply Patch</span>
             </Button>
           </CardFooter>
-        </Card> <!-- Footer -->
+        </Card>
+        <!-- Format Support Info -->
         <div class="mt-8 text-center">
           <p class="text-sm text-gray-500 dark:text-gray-400">
             Supported formats: IPS, UPS, BPS, xDelta patches
@@ -151,11 +154,83 @@
         </div>
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-6 mt-auto">
+      <div class="max-w-md mx-auto px-4">
+        <!-- Social Links -->
+        <div class="flex justify-center space-x-6 mb-4">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="https://instagram.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-gray-400 hover:text-pink-500 dark:text-gray-500 dark:hover:text-pink-400 transition-colors duration-200"
+                >
+                  <Instagram class="h-5 w-5" />
+                  <span class="sr-only">Instagram</span>
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Follow on Instagram</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="https://linkedin.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-gray-400 hover:text-blue-600 dark:text-gray-500 dark:hover:text-blue-400 transition-colors duration-200"
+                >
+                  <Linkedin class="h-5 w-5" />
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Connect on LinkedIn</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white transition-colors duration-200"
+                >
+                  <Github class="h-5 w-5" />
+                  <span class="sr-only">GitHub</span>
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>View on GitHub</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center">
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            © {{ currentYear }} Byte Forge. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { ref, reactive } from "vue";
+  import { ref, reactive, computed } from "vue";
   import {
     Card,
     CardContent,
@@ -181,10 +256,15 @@
     TooltipProvider,
     TooltipTrigger,
   } from "@/components/ui/tooltip";
-  import { Settings } from "lucide-vue-next";
+  import { Settings, Instagram, Linkedin, Github } from "lucide-vue-next";
   import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
 
   const { theme } = useTheme();
+
+  // Current year for copyright
+  const currentYear = computed(() => new Date().getFullYear());
+
+  // ...existing code...
 
   // Creator mode toggle
   const isCreatorMode = ref(false);
