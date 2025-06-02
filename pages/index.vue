@@ -38,40 +38,38 @@
             <!-- Patcher Mode Content -->
             <div v-if="!isCreatorMode">
               <!-- ROM File Upload -->
-              <div class="space-y-2">
+              <div class="space-y-4 pb-4">
                 <Label for="rom-file">ROM File</Label>
                 <div class="flex items-center space-x-2">
                   <Input id="rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
                     ref="romFileInput" @change="handleRomFileChange" class="flex-1" />
                 </div>
-                <!-- <p class="text-sm text-gray-500 dark:text-gray-400">
-                {{ romFileName || 'No File Chosen' }}
-              </p> -->
-              </div>
-
-              <!-- File Hashes -->
-              <div class="grid grid-cols-1 gap-4">
-                <div class="space-y-2">
-                  <Label for="crc32">CRC32</Label>
-                  <Input id="crc32" v-model="fileHashes.crc32" placeholder="CRC32 hash will appear here" readonly
-                    class="font-mono text-sm" />
+              </div>              <!-- File Hashes -->
+              <div class="grid grid-cols-1">
+                <div class="flex items-center space-x-2">
+                  <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-8">CRC32:</Label>
+                  <p class="font-mono text-sm text-gray-700 dark:text-gray-300 px-3 py-2 flex-1">
+                    {{ fileHashes.crc32 || 'CRC32 hash will appear here' }}
+                  </p>
                 </div>
 
-                <div class="space-y-2">
-                  <Label for="md5">MD5</Label>
-                  <Input id="md5" v-model="fileHashes.md5" placeholder="MD5 hash will appear here" readonly
-                    class="font-mono text-sm" />
+                <div class="flex items-center space-x-2">
+                  <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-8">MD5:</Label>
+                  <p class="font-mono text-sm text-gray-700 dark:text-gray-300 px-3 py-2 flex-1">
+                    {{ fileHashes.md5 || 'MD5 hash will appear here' }}
+                  </p>
                 </div>
 
-                <div class="space-y-2">
-                  <Label for="sha1">SHA-1</Label>
-                  <Input id="sha1" v-model="fileHashes.sha1" placeholder="SHA-1 hash will appear here" readonly
-                    class="font-mono text-sm" />
+                <div class="flex items-center space-x-2">
+                  <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-8">SHA-1:</Label>
+                  <p class="font-mono text-sm text-gray-700 dark:text-gray-300 px-3 py-2 flex-1">
+                    {{ fileHashes.sha1 || 'SHA-1 hash will appear here' }}
+                  </p>
                 </div>
               </div>
 
               <!-- Patch File Upload -->
-              <div class="space-y-2">
+              <div class="space-y-2 pt-4">
                 <Label for="patch-file">Patch File</Label>
                 <div class="flex items-center space-x-2">
                   <Input id="patch-file" type="file" accept=".ips,.ups,.bps,.xdelta,.patch" ref="patchFileInput"
