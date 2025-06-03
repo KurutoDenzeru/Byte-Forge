@@ -1,6 +1,8 @@
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col">
+  <div class="relative min-h-screen flex flex-col">
+    <div
+      class="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-gray-900 [background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#10b981_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#111827_40%,#34d399_100%)]">
+    </div>
     <div class="fixed top-4 right-4 z-50">
       <ThemeSwitcher />
     </div>
@@ -12,7 +14,7 @@
           <TooltipTrigger asChild>
             <Button variant="outline" size="icon"
               class="h-9 w-9 dark:bg-emerald-600 hover:dark:bg-emerald-500 cursor-pointer">
-              <Settings class="h-4 w-4" />
+              <Settings class="h-4 w-4" variant="outline" />
               <span class="sr-only">Settings</span>
             </Button>
           </TooltipTrigger>
@@ -154,7 +156,7 @@
             <Tooltip>
               <TooltipTrigger asChild>
                 <a href="https://www.instagram.com/krtclcdy/" target="_blank" rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-pink-500 dark:text-gray-500 dark:hover:text-pink-400 transition-colors duration-200">
+                  class="text-gray-700 hover:text-pink-500 dark:text-gray-400 dark:hover:text-pink-400 transition-colors duration-200">
                   <Instagram class="h-5 w-5" />
                   <span class="sr-only">Instagram</span>
                 </a>
@@ -169,7 +171,7 @@
             <Tooltip>
               <TooltipTrigger asChild>
                 <a href="https://www.linkedin.com/in/kurtcalacday/" target="_blank" rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-blue-600 dark:text-gray-500 dark:hover:text-blue-400 transition-colors duration-200">
+                  class="text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
                   <Linkedin class="h-5 w-5" />
                   <span class="sr-only">LinkedIn</span>
                 </a>
@@ -184,7 +186,7 @@
             <Tooltip>
               <TooltipTrigger asChild>
                 <a href="https://github.com/KurutoDenzeru/Byte-Forge" target="_blank" rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white transition-colors duration-200">
+                  class="text-gray-700 hover:text-gray-600 dark:text-gray-400 dark:hover:text-white transition-colors duration-200">
                   <Github class="h-5 w-5" />
                   <span class="sr-only">GitHub</span>
                 </a>
@@ -198,7 +200,7 @@
 
         <!-- Copyright -->
         <div class="text-center">
-          <p class="text-sm text-gray-500 dark:text-gray-400">
+          <p class="text-sm text-gray-700 dark:text-gray-400">
             © {{ currentYear }} Byte Forge. KurutoDenzeru. All rights reserved.
           </p>
         </div>
