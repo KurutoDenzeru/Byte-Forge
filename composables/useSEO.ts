@@ -2,7 +2,7 @@ export const useSEO = () => {
   // Set page title and meta tags for the ROM Patcher
   const setRomPatcherSEO = () => {
     useHead({
-      title: 'Universal ROM Patcher - Byte Forge',
+      title: 'Byte Forge | ROM Patcher',
       meta: [
         {
           name: 'description',

@@ -64,7 +64,8 @@
           </div>
 
           <DialogFooter>
-            <Button @click="isSettingsOpen = false" class="w-full cursor-pointer dark:bg-emerald-400 hover:bg-emerald-600">
+            <Button @click="isSettingsOpen = false"
+              class="w-full cursor-pointer dark:bg-emerald-400 hover:bg-emerald-600">
               Close
             </Button>
           </DialogFooter>
@@ -81,7 +82,7 @@
             class="mx-auto h-20 w-auto sm:h-24 md:h-28 lg:h-32 mb-4 max-w-full object-contain" loading="lazy"
             decoding="async" />
           <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Byte Forge - ROM Patcher
+            Byte Forge｜ROM Patcher
           </h1>
         </div>
         <!-- Main Card -->
