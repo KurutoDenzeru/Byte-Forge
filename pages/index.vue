@@ -5,24 +5,71 @@
     </div>
     <div class="fixed top-4 right-4 z-50">
       <ThemeSwitcher />
-    </div>
-
-    <!-- Floating Settings Button -->
+    </div> <!-- Floating Settings Button -->
     <div class="fixed bottom-4 right-4 z-50">
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="icon"
-              class="h-9 w-9 dark:bg-gray-900 hover:dark:bg-gray-500 cursor-pointer">
-              <Settings class="h-4 w-4" variant="outline" />
-              <span class="sr-only">Settings</span>
+      <Dialog v-model:open="isSettingsOpen">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="icon"
+                  class="h-9 w-9 dark:bg-gray-900 hover:dark:bg-gray-500 cursor-pointer">
+                  <Settings class="h-4 w-4" />
+                  <span class="sr-only">Settings</span>
+                </Button>
+              </DialogTrigger>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Settings</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <DialogContent class="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Settings</DialogTitle>
+            <DialogDescription>
+              Configure application settings for the ROM Patcher.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div class="grid gap-6 py-4">
+            <!-- Use name for output setting -->
+            <div class="flex items-center justify-between space-x-2">
+              <div class="space-y-0.5">
+                <Label for="use-name-output" class="text-sm font-medium">
+                  Use name for output
+                </Label>
+                <p class="text-xs text-muted-foreground">
+                  Use the ROM filename for the output file instead of generating a new name
+                </p>
+              </div>
+              <Switch id="use-name-output" v-model="useNameForOutput"
+                class="cursor-pointer data-[state=checked]:bg-emerald-600 hover:data-[state=checked]:bg-emerald-500 [&_[data-state]]:dark:bg-white" />
+            </div>
+
+            <!-- Fix ROM checksum setting -->
+            <div class="flex items-center justify-between space-x-2">
+              <div class="space-y-0.5">
+                <Label for="fix-rom-checksum" class="text-sm font-medium">
+                  FIX ROM Checksum
+                </Label>
+                <p class="text-xs text-muted-foreground">
+                  Automatically fix ROM checksum after applying patches
+                </p>
+              </div>
+              <Switch id="fix-rom-checksum" v-model="fixRomChecksum"
+                class="cursor-pointer data-[state=checked]:bg-emerald-600 hover:data-[state=checked]:bg-emerald-500 [&_[data-state]]:dark:bg-white" />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button @click="isSettingsOpen = false" class="w-full cursor-pointer dark:bg-emerald-400 hover:bg-emerald-600">
+              Close
             </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Settings</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
 
     <!-- Main content -->
@@ -234,9 +281,17 @@
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-  } from "@/components/ui/tooltip";
-  import { Settings, Instagram, Linkedin, Github } from "lucide-vue-next";
+  } from "@/components/ui/tooltip";  import { Settings, Instagram, Linkedin, Github } from "lucide-vue-next";
   import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
+  import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog";
   
   // Import composables
   import { useAppUtils } from "@/composables/useAppUtils";
@@ -279,9 +334,13 @@
     handleOriginalRomFileChange,
     handleModifiedRomFileChange
   } = useFileHandler();
-
   // Creator mode toggle
   const isCreatorMode = ref(false);
+
+  // Settings dialog state
+  const isSettingsOpen = ref(false);
+  const useNameForOutput = ref(false);
+  const fixRomChecksum = ref(false);
 
   // Wrapper for ROM file change to include hash calculation
   const handleRomFileChange = (event: Event) => {
