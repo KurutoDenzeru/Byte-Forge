@@ -156,19 +156,15 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-6 mt-auto">
+    <footer class="py-6 mt-auto">
       <div class="max-w-md mx-auto px-4">
         <!-- Social Links -->
         <div class="flex justify-center space-x-6 mb-4">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <a 
-                  href="https://instagram.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-pink-500 dark:text-gray-500 dark:hover:text-pink-400 transition-colors duration-200"
-                >
+                <a href="https://www.instagram.com/krtclcdy/" target="_blank" rel="noopener noreferrer"
+                  class="text-gray-400 hover:text-pink-500 dark:text-gray-500 dark:hover:text-pink-400 transition-colors duration-200">
                   <Instagram class="h-5 w-5" />
                   <span class="sr-only">Instagram</span>
                 </a>
@@ -182,12 +178,8 @@
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-blue-600 dark:text-gray-500 dark:hover:text-blue-400 transition-colors duration-200"
-                >
+                <a href="https://www.linkedin.com/in/kurtcalacday/" target="_blank" rel="noopener noreferrer"
+                  class="text-gray-400 hover:text-blue-600 dark:text-gray-500 dark:hover:text-blue-400 transition-colors duration-200">
                   <Linkedin class="h-5 w-5" />
                   <span class="sr-only">LinkedIn</span>
                 </a>
@@ -201,12 +193,8 @@
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <a 
-                  href="https://github.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white transition-colors duration-200"
-                >
+                <a href="https://github.com/KurutoDenzeru/Byte-Forge" target="_blank" rel="noopener noreferrer"
+                  class="text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white transition-colors duration-200">
                   <Github class="h-5 w-5" />
                   <span class="sr-only">GitHub</span>
                 </a>
@@ -221,7 +209,7 @@
         <!-- Copyright -->
         <div class="text-center">
           <p class="text-sm text-gray-500 dark:text-gray-400">
-            © {{ currentYear }} Byte Forge. All rights reserved.
+            © {{ currentYear }} Byte Forge. KurutoDenzeru. All rights reserved.
           </p>
         </div>
       </div>
