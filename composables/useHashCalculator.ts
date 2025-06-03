@@ -1,27 +1,88 @@
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
+import { HashCalculator } from '~/lib/core/hash-calculator'
+import type { FileHashes, HashProgress } from '~/lib/types/rom-patcher'
 
 export const useHashCalculator = () => {
   // File hashes
-  const fileHashes = reactive({
+  const fileHashes = reactive<FileHashes>({
     crc32: '',
     md5: '',
     sha1: ''
   })
 
-  // Calculate file hashes (placeholder implementation)
+  // Progress tracking
+  const isCalculating = ref(false)
+  const calculationProgress = ref(0)
+  const calculationError = ref<string | null>(null)
+
+  // Calculate file hashes with progress tracking
   const calculateHashes = async (file: File) => {
-    // This is a placeholder - in a real implementation, you'd calculate actual hashes
+    isCalculating.value = true
+    calculationProgress.value = 0
+    calculationError.value = null
+
+    // Reset hashes
     fileHashes.crc32 = 'Calculating...'
     fileHashes.md5 = 'Calculating...'
     fileHashes.sha1 = 'Calculating...'
 
-    // Simulate hash calculation delay
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      // Convert File to Uint8Array
+      const arrayBuffer = await file.arrayBuffer()
+      const data = new Uint8Array(arrayBuffer)
 
-    // Placeholder values - replace with actual hash calculation
-    fileHashes.crc32 = 'A1B2C3D4'
-    fileHashes.md5 = '5d41402abc4b2a76b9719d911017c592'
-    fileHashes.sha1 = 'aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d'
+      // Progress callback
+      const onProgress = (progress: HashProgress) => {
+        calculationProgress.value = Math.round(progress.percentage)
+      }
+
+      // Calculate all hashes
+      const hashes = await HashCalculator.calculateHashes(data, onProgress)
+
+      // Update reactive hashes
+      fileHashes.crc32 = hashes.crc32
+      fileHashes.md5 = hashes.md5
+      fileHashes.sha1 = hashes.sha1
+
+      calculationProgress.value = 100
+    } catch (error) {
+      console.error('Hash calculation error:', error)
+      calculationError.value = error instanceof Error ? error.message : 'Unknown error occurred'
+      
+      // Reset to empty on error
+      resetHashes()
+    } finally {
+      isCalculating.value = false
+    }
+  }
+
+  // Calculate hashes for binary data directly
+  const calculateHashesFromData = async (data: Uint8Array) => {
+    isCalculating.value = true
+    calculationProgress.value = 0
+    calculationError.value = null
+
+    try {
+      const onProgress = (progress: HashProgress) => {
+        calculationProgress.value = Math.round(progress.percentage)
+      }
+
+      const hashes = await HashCalculator.calculateHashes(data, onProgress)
+      
+      fileHashes.crc32 = hashes.crc32
+      fileHashes.md5 = hashes.md5
+      fileHashes.sha1 = hashes.sha1
+
+      calculationProgress.value = 100
+      return hashes
+    } catch (error) {
+      console.error('Hash calculation error:', error)
+      calculationError.value = error instanceof Error ? error.message : 'Unknown error occurred'
+      resetHashes()
+      throw error
+    } finally {
+      isCalculating.value = false
+    }
   }
 
   // Reset hashes
@@ -29,11 +90,17 @@ export const useHashCalculator = () => {
     fileHashes.crc32 = ''
     fileHashes.md5 = ''
     fileHashes.sha1 = ''
+    calculationProgress.value = 0
+    calculationError.value = null
   }
 
   return {
     fileHashes,
+    isCalculating: readonly(isCalculating),
+    calculationProgress: readonly(calculationProgress),
+    calculationError: readonly(calculationError),
     calculateHashes,
+    calculateHashesFromData,
     resetHashes
   }
 }
