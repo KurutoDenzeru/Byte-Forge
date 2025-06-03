@@ -30,7 +30,7 @@
       <div class="w-full max-w-lg">
         <!-- Header -->
         <div class="text-center mb-8">
-          <img src="/logo.png" alt="Byte Forge Logo"
+          <img src="/logo.webp" alt="Byte Forge Logo"
             class="mx-auto h-20 w-auto sm:h-24 md:h-28 lg:h-32 mb-4 max-w-full object-contain" loading="lazy"
             decoding="async" />
           <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
