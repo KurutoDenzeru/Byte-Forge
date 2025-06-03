@@ -13,7 +13,7 @@
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="outline" size="icon"
-              class="h-9 w-9 dark:bg-emerald-600 hover:dark:bg-emerald-500 cursor-pointer">
+              class="h-9 w-9 dark:bg-gray-900 hover:dark:bg-gray-500 cursor-pointer">
               <Settings class="h-4 w-4" variant="outline" />
               <span class="sr-only">Settings</span>
             </Button>
@@ -137,7 +137,8 @@
               <span v-else>Apply Patch</span>
             </Button>
           </CardFooter>
-        </Card>        <!-- Format Support Info -->
+        </Card>
+        <!-- Format Support Info -->
         <div class="mt-8 text-center">
           <p class="text-sm text-gray-500 dark:text-gray-400">
             {{ formatSupportText }}

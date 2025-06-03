@@ -3,13 +3,12 @@
     <Tooltip>
       <TooltipTrigger as-child>
         <DropdownMenu>
-          <DropdownMenuTrigger as-child>
-            <Button variant="outline" size="icon" class="h-9 w-9 dark:bg-emerald-600 hover:dark:bg-emerald-500 cursor-pointer">
+          <DropdownMenuTrigger as-child>            <Button variant="outline" size="icon" class="h-9 w-9 bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 hover:dark:bg-emerald-500 cursor-pointer">
               <Sun 
-                class="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" 
+                class="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-white" 
               />
               <Moon 
-                class="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" 
+                class="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-white" 
               />
               <span class="sr-only">Toggle theme</span>
             </Button>
@@ -63,6 +62,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Sun, Moon, Monitor, Check } from 'lucide-vue-next'
+import { useTheme } from '@/composables/useTheme'
 
 const { theme, setTheme, actualTheme } = useTheme()
 
