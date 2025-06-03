@@ -4,7 +4,7 @@
       <TooltipTrigger as-child>
         <DropdownMenu>
           <DropdownMenuTrigger as-child>
-            <Button variant="outline" size="icon" class="h-9 w-9 cursor-pointer">
+            <Button variant="outline" size="icon" class="h-9 w-9 dark:bg-emerald-600 hover:dark:bg-emerald-500 cursor-pointer">
               <Sun 
                 class="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" 
               />

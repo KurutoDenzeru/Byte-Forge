@@ -10,7 +10,8 @@
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button variant="outline" size="icon" class="h-9 w-9 cursor-pointer">
+            <Button variant="outline" size="icon"
+              class="h-9 w-9 dark:bg-emerald-600 hover:dark:bg-emerald-500 cursor-pointer">
               <Settings class="h-4 w-4" />
               <span class="sr-only">Settings</span>
             </Button>
@@ -27,18 +28,18 @@
       <div class="w-full max-w-lg">
         <!-- Header -->
         <div class="text-center mb-8">
+          <img src="/logo.png" alt="Byte Forge Logo"
+            class="mx-auto h-20 w-auto sm:h-24 md:h-28 lg:h-32 mb-4 max-w-full object-contain" loading="lazy"
+            decoding="async" />
           <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             Byte Forge - ROM Patcher
           </h1>
-          <p class="text-gray-600 dark:text-gray-400">
-            Apply patches to your ROM files with ease
-          </p>
         </div>
         <!-- Main Card -->
         <div class="flex items-center space-x-3 justify-end mb-4">
           <Label for="creator-mode" class="text-sm font-medium cursor-pointer">Creator Mode</Label>
           <Switch id="creator-mode"
-            class="cursor-pointer data-[state=checked]:bg-emerald-600 hover:data-[state=checked]:bg-emerald-500"
+            class="cursor-pointer data-[state=checked]:bg-emerald-600 hover:data-[state=checked]:bg-emerald-500 [&_[data-state]]:dark:bg-white"
             v-model="isCreatorMode" />
         </div>
         <Card class="shadow-lg">
@@ -46,39 +47,34 @@
             <CardTitle class="text-xl text-center">
               {{ isCreatorMode ? 'Patch Creator' : 'ROM Patcher' }}
             </CardTitle>
-            <!-- <CardDescription class="text-center">
-              {{ isCreatorMode ? 'Create patches from ROM differences' : 'Upload your ROM and patch files to get started' }}
-            </CardDescription> -->
           </CardHeader>
           <CardContent class="space-y-6">
             <!-- Patcher Mode Content -->
             <div v-if="!isCreatorMode">
               <!-- ROM File Upload -->
-              <div class="flex items-center pb-4">
+              <div class="flex flex-col sm:flex-row sm:items-center pb-4 space-y-2 sm:space-y-0 sm:space-x-2">
                 <Label for="rom-file" class="min-w-[80px]">ROM File:</Label>
-                <div class="flex items-center space-x-2">
-                  <Input id="rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
-                    ref="romFileInput" @change="handleRomFileChange" class="flex-1" />
-                </div>
+                <Input id="rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
+                  ref="romFileInput" @change="handleRomFileChange" class="w-full cursor-pointer" />
               </div>
               <!-- File Hashes -->
               <div class="grid grid-cols-1">
                 <div class="flex items-center space-x-2">
-                  <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-4">CRC32:</Label>
+                  <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-8">CRC32:</Label>
                   <p class="font-mono text-sm text-gray-700 dark:text-gray-300 px-3 py-2 flex-1">
                     {{ fileHashes.crc32 || 'CRC32 hash will appear here' }}
                   </p>
                 </div>
 
                 <div class="flex items-center space-x-2">
-                  <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-4">MD5:</Label>
+                  <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-8 pr-2.5">MD5:</Label>
                   <p class="font-mono text-sm text-gray-700 dark:text-gray-300 px-3 py-2 flex-1">
                     {{ fileHashes.md5 || 'MD5 hash will appear here' }}
                   </p>
                 </div>
 
                 <div class="flex items-center space-x-2">
-                  <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-4">SHA-1:</Label>
+                  <Label class="min-w-[60px] text-gray-600 dark:text-gray-200 indent-8">SHA-1:</Label>
                   <p class="font-mono text-sm text-gray-700 dark:text-gray-300 px-3 py-2 flex-1">
                     {{ fileHashes.sha1 || 'SHA-1 hash will appear here' }}
                   </p>
@@ -86,40 +82,34 @@
               </div>
 
               <!-- Patch File Upload -->
-              <div class="flex items-center pt-4">
+              <div class="flex flex-col sm:flex-row sm:items-center pt-4 space-y-2 sm:space-y-0 sm:space-x-2">
                 <Label for="patch-file" class="min-w-[80px]">Patch File:</Label>
-                <div class="flex items-center space-x-2">
-                  <Input id="patch-file" type="file" accept=".ips,.ups,.bps,.xdelta,.patch" ref="patchFileInput"
-                    @change="handlePatchFileChange" class="flex-1" />
-                </div>
+                <Input id="patch-file" type="file" accept=".ips,.ups,.bps,.xdelta,.patch" ref="patchFileInput"
+                  @change="handlePatchFileChange" class="w-full cursor-pointer" />
               </div>
             </div>
 
             <!-- Creator Mode Content -->
             <div v-else>
               <!-- Original ROM File Upload -->
-              <div class="flex items-center space-x-2 pb-4">
-                <Label for="original-rom-file" class="min-w-[80px]">Original ROM:</Label>
-                <div class="flex items-center space-x-2">
-                  <Input id="original-rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
-                    ref="originalRomFileInput" @change="handleOriginalRomFileChange" class="flex-1" />
-                </div>
+              <div class="flex flex-col sm:flex-row sm:items-center pb-4 space-y-2 sm:space-y-0 sm:space-x-8">
+                <Label for="original-rom-file" class="min-w-[80px] whitespace-nowrap">Original ROM:</Label>
+                <Input id="original-rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
+                  ref="originalRomFileInput" @change="handleOriginalRomFileChange" class="w-full cursor-pointer" />
               </div>
 
               <!-- Modified ROM File Upload -->
-              <div class="flex items-center space-x-2 pb-4">
-                <Label for="modified-rom-file" class="min-w-[80px]">Modified ROM:</Label>
-                <div class="flex items-center space-x-2">
-                  <Input id="modified-rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
-                    ref="modifiedRomFileInput" @change="handleModifiedRomFileChange" class="flex-1" />
-                </div>
+              <div class="flex flex-col sm:flex-row sm:items-center pb-4 space-y-2 sm:space-y-0 sm:space-x-8">
+                <Label for="modified-rom-file" class="min-w-[80px] whitespace-nowrap">Modified ROM:</Label>
+                <Input id="modified-rom-file" type="file" accept=".rom,.nes,.smc,.sfc,.gb,.gbc,.gba,.z64,.n64,.iso"
+                  ref="modifiedRomFileInput" @change="handleModifiedRomFileChange" class="w-full cursor-pointer" />
               </div>
 
               <!-- Patch Type Selection -->
-              <div class="flex items-center space-x-2">
-                <Label for="patch-type" class="min-w-[80px]">Patch Type:</Label>
-                <Select v-model="selectedPatchType" class="flex-1">
-                  <SelectTrigger id="patch-type">
+              <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-8">
+                <Label for="patch-type" class="min-w-[80px] whitespace-nowrap">Patch Type:</Label>
+                <Select v-model="selectedPatchType" class="w-full">
+                  <SelectTrigger id="patch-type" class="w-full">
                     <SelectValue placeholder="Select patch type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -133,8 +123,8 @@
                   </SelectContent>
                 </Select>
               </div>
-
             </div>
+
           </CardContent>
           <CardFooter>
             <Button @click="isCreatorMode ? createPatch() : applyPatch()"
