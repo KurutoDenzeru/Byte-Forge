@@ -137,11 +137,10 @@
               <span v-else>Apply Patch</span>
             </Button>
           </CardFooter>
-        </Card>
-        <!-- Format Support Info -->
+        </Card>        <!-- Format Support Info -->
         <div class="mt-8 text-center">
           <p class="text-sm text-gray-500 dark:text-gray-400">
-            Supported formats: IPS, UPS, BPS, xDelta patches
+            {{ formatSupportText }}
           </p>
         </div>
       </div>
@@ -210,11 +209,10 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, reactive, computed } from "vue";
+  import { ref } from "vue";
   import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -238,198 +236,61 @@
   } from "@/components/ui/tooltip";
   import { Settings, Instagram, Linkedin, Github } from "lucide-vue-next";
   import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
+  
+  // Import composables
+  import { useAppUtils } from "@/composables/useAppUtils";
+  import { useSEO } from "@/composables/useSEO";
+  import { useHashCalculator } from "@/composables/useHashCalculator";
+  import { usePatchOperations } from "@/composables/usePatchOperations";
+  import { useFileHandler } from "@/composables/useFileHandler";
 
+  // Composables
   const { theme } = useTheme();
-
-  // Current year for copyright
-  const currentYear = computed(() => new Date().getFullYear());
-
-  // ...existing code...
+  const { currentYear, supportedFormats, formatSupportText } = useAppUtils();
+  const { setRomPatcherSEO } = useSEO();
+  const { fileHashes, calculateHashes, resetHashes } = useHashCalculator();
+  const {
+    isProcessing,
+    selectedPatchType,
+    applyPatch: performApplyPatch,
+    createPatch: performCreatePatch
+  } = usePatchOperations();
+  
+  const {
+    // Patcher mode files
+    romFile,
+    patchFile,
+    romFileName,
+    patchFileName,
+    // Creator mode files
+    originalRomFile,
+    modifiedRomFile,
+    originalRomFileName,
+    modifiedRomFileName,
+    // Template refs
+    romFileInput,
+    patchFileInput,
+    originalRomFileInput,
+    modifiedRomFileInput,
+    // Event handlers
+    handleRomFileChange: handleRomFileChangeBase,
+    handlePatchFileChange,
+    handleOriginalRomFileChange,
+    handleModifiedRomFileChange
+  } = useFileHandler();
 
   // Creator mode toggle
   const isCreatorMode = ref(false);
 
-  // File references for patcher mode
-  const romFile = ref<File | null>(null);
-  const patchFile = ref<File | null>(null);
-  const romFileName = ref<string>("");
-  const patchFileName = ref<string>("");
-
-  // File references for creator mode
-  const originalRomFile = ref<File | null>(null);
-  const modifiedRomFile = ref<File | null>(null);
-  const originalRomFileName = ref<string>("");
-  const modifiedRomFileName = ref<string>("");
-  const selectedPatchType = ref<string>("ips");
-
-  const isProcessing = ref(false);
-
-  // File hashes
-  const fileHashes = reactive({
-    crc32: "",
-    md5: "",
-    sha1: "",
-  });
-
-  // Template refs
-  const romFileInput = ref<HTMLInputElement>();
-  const patchFileInput = ref<HTMLInputElement>();
-  const originalRomFileInput = ref<HTMLInputElement>();
-  const modifiedRomFileInput = ref<HTMLInputElement>();
-
-  // Handle ROM file selection (patcher mode)
-  const handleRomFileChange = async (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
-
-    if (file) {
-      romFile.value = file;
-      romFileName.value = file.name;
-
-      // Calculate hashes (placeholder for now)
-      await calculateHashes(file);
-    } else {
-      romFile.value = null;
-      romFileName.value = "";
-      resetHashes();
-    }
+  // Wrapper for ROM file change to include hash calculation
+  const handleRomFileChange = (event: Event) => {
+    handleRomFileChangeBase(event, calculateHashes, resetHashes);
   };
 
-  // Handle patch file selection (patcher mode)
-  const handlePatchFileChange = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
+  // Wrapper functions for patch operations
+  const applyPatch = () => performApplyPatch(romFile, patchFile);
+  const createPatch = () => performCreatePatch(originalRomFile, modifiedRomFile, selectedPatchType);
 
-    if (file) {
-      patchFile.value = file;
-      patchFileName.value = file.name;
-    } else {
-      patchFile.value = null;
-      patchFileName.value = "";
-    }
-  };
-
-  // Handle original ROM file selection (creator mode)
-  const handleOriginalRomFileChange = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
-
-    if (file) {
-      originalRomFile.value = file;
-      originalRomFileName.value = file.name;
-    } else {
-      originalRomFile.value = null;
-      originalRomFileName.value = "";
-    }
-  };
-
-  // Handle modified ROM file selection (creator mode)
-  const handleModifiedRomFileChange = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
-
-    if (file) {
-      modifiedRomFile.value = file;
-      modifiedRomFileName.value = file.name;
-    } else {
-      modifiedRomFile.value = null;
-      modifiedRomFileName.value = "";
-    }
-  };
-
-  // Calculate file hashes (placeholder implementation)
-  const calculateHashes = async (file: File) => {
-    // This is a placeholder - in a real implementation, you'd calculate actual hashes
-    fileHashes.crc32 = "Calculating...";
-    fileHashes.md5 = "Calculating...";
-    fileHashes.sha1 = "Calculating...";
-
-    // Simulate hash calculation delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Placeholder values - replace with actual hash calculation
-    fileHashes.crc32 = "A1B2C3D4";
-    fileHashes.md5 = "5d41402abc4b2a76b9719d911017c592";
-    fileHashes.sha1 = "aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d";
-  };
-
-  // Reset hashes
-  const resetHashes = () => {
-    fileHashes.crc32 = "";
-    fileHashes.md5 = "";
-    fileHashes.sha1 = "";
-  };
-
-  // Apply patch function (patcher mode)
-  const applyPatch = async () => {
-    if (!romFile.value || !patchFile.value) {
-      return;
-    }
-
-    isProcessing.value = true;
-
-    try {
-      // Placeholder for patch application logic
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Here you would implement the actual patch application logic
-      console.log(
-        "Applying patch:",
-        patchFile.value.name,
-        "to ROM:",
-        romFile.value.name,
-      );
-
-      // Show success message or download result
-      alert("Patch applied successfully!");
-    } catch (error) {
-      console.error("Error applying patch:", error);
-      alert("Error applying patch. Please try again.");
-    } finally {
-      isProcessing.value = false;
-    }
-  };
-
-  // Create patch function (creator mode)
-  const createPatch = async () => {
-    if (
-      !originalRomFile.value ||
-      !modifiedRomFile.value ||
-      !selectedPatchType.value
-    ) {
-      return;
-    }
-
-    isProcessing.value = true;
-
-    try {
-      // Placeholder for patch creation logic
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Here you would implement the actual patch creation logic
-      console.log(
-        "Creating",
-        selectedPatchType.value.toUpperCase(),
-        "patch from:",
-        originalRomFile.value.name,
-        "to:",
-        modifiedRomFile.value.name,
-      );
-
-      // Show success message or download result
-      alert(
-        `${selectedPatchType.value.toUpperCase()} patch created successfully!`,
-      );
-    } catch (error) {
-      console.error("Error creating patch:", error);
-      alert("Error creating patch. Please try again.");
-    } finally {
-      isProcessing.value = false;
-    }
-  };
-
-  // Set page title
-  useHead({
-    title: "Universal ROM Patcher",
-  });
+  // Set SEO
+  setRomPatcherSEO();
 </script>
