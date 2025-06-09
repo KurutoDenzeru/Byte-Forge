@@ -10,7 +10,7 @@ export const useSEO = () => {
         {
           rel: 'icon',
           type: 'image/webp',
-          href: '/public/logo.webp'
+          href: '/logo.webp'
         }
       ],
       meta: [
