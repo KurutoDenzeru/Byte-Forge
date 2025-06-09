@@ -3,6 +3,16 @@ export const useSEO = () => {
   const setRomPatcherSEO = () => {
     useHead({
       title: 'Byte Forge | ROM Patcher',
+      htmlAttrs: {
+        lang: 'en'
+      },
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/webp',
+          href: '/public/logo.webp'
+        }
+      ],
       meta: [
         {
           name: 'description',
