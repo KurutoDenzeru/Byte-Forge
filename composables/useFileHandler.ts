@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { HashCalculator } from '../core/hash-calculator'
 
 export const useFileHandler = () => {
   // File references for patcher mode
@@ -106,7 +107,8 @@ export const useFileHandler = () => {
 
       try {
         // Calculate hashes
-        await calculateHashes(file)
+        const hashes = await HashCalculator.calculateHashes(file);
+        console.log('File hashes:', hashes);
       } catch (error) {
         console.error('Error calculating hashes:', error)
         romFileError.value = 'Failed to calculate file hashes. The file may be corrupted.'
