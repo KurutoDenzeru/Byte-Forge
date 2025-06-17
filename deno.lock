@@ -1,17 +1,17 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@tailwindcss/vite@^4.1.8": "4.1.8_vite@6.3.5__picomatch@4.0.2__jiti@2.4.2",
+    "npm:@tailwindcss/vite@^4.1.10": "4.1.10_vite@6.3.5__jiti@2.4.2__picomatch@4.0.2",
     "npm:@vueuse/core@^13.3.0": "13.3.0_vue@3.5.16__typescript@5.8.3_typescript@5.8.3",
     "npm:class-variance-authority@~0.7.1": "0.7.1",
     "npm:clsx@^2.1.1": "2.1.1",
-    "npm:lucide-vue-next@0.513": "0.513.0_vue@3.5.16__typescript@5.8.3_typescript@5.8.3",
+    "npm:lucide-vue-next@0.516": "0.516.0_vue@3.5.16__typescript@5.8.3_typescript@5.8.3",
     "npm:nuxt-vitalizer@0.10.0": "0.10.0",
     "npm:nuxt@^3.17.5": "3.17.5_vue@3.5.16__typescript@5.8.3_vue-router@4.5.1__vue@3.5.16___typescript@5.8.3__typescript@5.8.3_typescript@5.8.3_jiti@2.4.2",
     "npm:reka-ui@^2.3.1": "2.3.1_vue@3.5.16__typescript@5.8.3_typescript@5.8.3",
     "npm:shadcn-nuxt@2.2.0": "2.2.0",
-    "npm:tailwind-merge@^3.3.0": "3.3.0",
-    "npm:tailwindcss@^4.1.8": "4.1.8",
+    "npm:tailwind-merge@^3.3.1": "3.3.1",
+    "npm:tailwindcss@^4.1.10": "4.1.10",
     "npm:tw-animate-css@^1.3.4": "1.3.4",
     "npm:typescript@^5.8.3": "5.8.3",
     "npm:vue-router@^4.5.1": "4.5.1_vue@3.5.16__typescript@5.8.3_typescript@5.8.3",
@@ -656,7 +656,7 @@
         "@nuxt/kit@3.17.5_magicast@0.3.5",
         "@nuxt/schema",
         "execa",
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2"
+        "vite"
       ]
     },
     "@nuxt/devtools-wizard@2.5.0": {
@@ -704,7 +704,7 @@
         "sirv",
         "structured-clone-es",
         "tinyglobby",
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2",
+        "vite",
         "vite-plugin-inspect",
         "vite-plugin-vue-tracer",
         "which@5.0.0",
@@ -826,7 +826,7 @@
         "ufo",
         "unenv",
         "unplugin@2.3.5",
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2",
+        "vite",
         "vite-node",
         "vite-plugin-checker",
         "vue",
@@ -1243,8 +1243,8 @@
         "tslib"
       ]
     },
-    "@tailwindcss/node@4.1.8": {
-      "integrity": "sha512-OWwBsbC9BFAJelmnNcrKuf+bka2ZxCE2A4Ft53Tkg4uoiE67r/PMEYwCsourC26E+kmxfwE0hVzMdxqeW+xu7Q==",
+    "@tailwindcss/node@4.1.10": {
+      "integrity": "sha512-2ACf1znY5fpRBwRhMgj9ZXvb2XZW8qs+oTfotJ2C5xR0/WNL7UHZ7zXl6s+rUqedL1mNi+0O+WQr5awGowS3PQ==",
       "dependencies": [
         "@ampproject/remapping",
         "enhanced-resolve",
@@ -1255,9 +1255,19 @@
         "tailwindcss"
       ]
     },
+    "@tailwindcss/oxide-android-arm64@4.1.10": {
+      "integrity": "sha512-VGLazCoRQ7rtsCzThaI1UyDu/XRYVyH4/EWiaSX6tFglE+xZB5cvtC5Omt0OQ+FfiIVP98su16jDVHDEIuH4iQ==",
+      "os": ["android"],
+      "cpu": ["arm64"]
+    },
     "@tailwindcss/oxide-android-arm64@4.1.8": {
       "integrity": "sha512-Fbz7qni62uKYceWYvUjRqhGfZKwhZDQhlrJKGtnZfuNtHFqa8wmr+Wn74CTWERiW2hn3mN5gTpOoxWKk0jRxjg==",
       "os": ["android"],
+      "cpu": ["arm64"]
+    },
+    "@tailwindcss/oxide-darwin-arm64@4.1.10": {
+      "integrity": "sha512-ZIFqvR1irX2yNjWJzKCqTCcHZbgkSkSkZKbRM3BPzhDL/18idA8uWCoopYA2CSDdSGFlDAxYdU2yBHwAwx8euQ==",
+      "os": ["darwin"],
       "cpu": ["arm64"]
     },
     "@tailwindcss/oxide-darwin-arm64@4.1.8": {
@@ -1265,9 +1275,19 @@
       "os": ["darwin"],
       "cpu": ["arm64"]
     },
+    "@tailwindcss/oxide-darwin-x64@4.1.10": {
+      "integrity": "sha512-eCA4zbIhWUFDXoamNztmS0MjXHSEJYlvATzWnRiTqJkcUteSjO94PoRHJy1Xbwp9bptjeIxxBHh+zBWFhttbrQ==",
+      "os": ["darwin"],
+      "cpu": ["x64"]
+    },
     "@tailwindcss/oxide-darwin-x64@4.1.8": {
       "integrity": "sha512-t6PgxjEMLp5Ovf7uMb2OFmb3kqzVTPPakWpBIFzppk4JE4ix0yEtbtSjPbU8+PZETpaYMtXvss2Sdkx8Vs4XRw==",
       "os": ["darwin"],
+      "cpu": ["x64"]
+    },
+    "@tailwindcss/oxide-freebsd-x64@4.1.10": {
+      "integrity": "sha512-8/392Xu12R0cc93DpiJvNpJ4wYVSiciUlkiOHOSOQNH3adq9Gi/dtySK7dVQjXIOzlpSHjeCL89RUUI8/GTI6g==",
+      "os": ["freebsd"],
       "cpu": ["x64"]
     },
     "@tailwindcss/oxide-freebsd-x64@4.1.8": {
@@ -1275,13 +1295,28 @@
       "os": ["freebsd"],
       "cpu": ["x64"]
     },
+    "@tailwindcss/oxide-linux-arm-gnueabihf@4.1.10": {
+      "integrity": "sha512-t9rhmLT6EqeuPT+MXhWhlRYIMSfh5LZ6kBrC4FS6/+M1yXwfCtp24UumgCWOAJVyjQwG+lYva6wWZxrfvB+NhQ==",
+      "os": ["linux"],
+      "cpu": ["arm"]
+    },
     "@tailwindcss/oxide-linux-arm-gnueabihf@4.1.8": {
       "integrity": "sha512-Jmzr3FA4S2tHhaC6yCjac3rGf7hG9R6Gf2z9i9JFcuyy0u79HfQsh/thifbYTF2ic82KJovKKkIB6Z9TdNhCXQ==",
       "os": ["linux"],
       "cpu": ["arm"]
     },
+    "@tailwindcss/oxide-linux-arm64-gnu@4.1.10": {
+      "integrity": "sha512-3oWrlNlxLRxXejQ8zImzrVLuZ/9Z2SeKoLhtCu0hpo38hTO2iL86eFOu4sVR8cZc6n3z7eRXXqtHJECa6mFOvA==",
+      "os": ["linux"],
+      "cpu": ["arm64"]
+    },
     "@tailwindcss/oxide-linux-arm64-gnu@4.1.8": {
       "integrity": "sha512-qq7jXtO1+UEtCmCeBBIRDrPFIVI4ilEQ97qgBGdwXAARrUqSn/L9fUrkb1XP/mvVtoVeR2bt/0L77xx53bPZ/Q==",
+      "os": ["linux"],
+      "cpu": ["arm64"]
+    },
+    "@tailwindcss/oxide-linux-arm64-musl@4.1.10": {
+      "integrity": "sha512-saScU0cmWvg/Ez4gUmQWr9pvY9Kssxt+Xenfx1LG7LmqjcrvBnw4r9VjkFcqmbBb7GCBwYNcZi9X3/oMda9sqQ==",
       "os": ["linux"],
       "cpu": ["arm64"]
     },
@@ -1290,8 +1325,18 @@
       "os": ["linux"],
       "cpu": ["arm64"]
     },
+    "@tailwindcss/oxide-linux-x64-gnu@4.1.10": {
+      "integrity": "sha512-/G3ao/ybV9YEEgAXeEg28dyH6gs1QG8tvdN9c2MNZdUXYBaIY/Gx0N6RlJzfLy/7Nkdok4kaxKPHKJUlAaoTdA==",
+      "os": ["linux"],
+      "cpu": ["x64"]
+    },
     "@tailwindcss/oxide-linux-x64-gnu@4.1.8": {
       "integrity": "sha512-32iEXX/pXwikshNOGnERAFwFSfiltmijMIAbUhnNyjFr3tmWmMJWQKU2vNcFX0DACSXJ3ZWcSkzNbaKTdngH6g==",
+      "os": ["linux"],
+      "cpu": ["x64"]
+    },
+    "@tailwindcss/oxide-linux-x64-musl@4.1.10": {
+      "integrity": "sha512-LNr7X8fTiKGRtQGOerSayc2pWJp/9ptRYAa4G+U+cjw9kJZvkopav1AQc5HHD+U364f71tZv6XamaHKgrIoVzA==",
       "os": ["linux"],
       "cpu": ["x64"]
     },
@@ -1299,6 +1344,18 @@
       "integrity": "sha512-s+VSSD+TfZeMEsCaFaHTaY5YNj3Dri8rST09gMvYQKwPphacRG7wbuQ5ZJMIJXN/puxPcg/nU+ucvWguPpvBDg==",
       "os": ["linux"],
       "cpu": ["x64"]
+    },
+    "@tailwindcss/oxide-wasm32-wasi@4.1.10": {
+      "integrity": "sha512-d6ekQpopFQJAcIK2i7ZzWOYGZ+A6NzzvQ3ozBvWFdeyqfOZdYHU66g5yr+/HC4ipP1ZgWsqa80+ISNILk+ae/Q==",
+      "dependencies": [
+        "@emnapi/core",
+        "@emnapi/runtime",
+        "@emnapi/wasi-threads",
+        "@napi-rs/wasm-runtime",
+        "@tybys/wasm-util",
+        "tslib"
+      ],
+      "cpu": ["wasm32"]
     },
     "@tailwindcss/oxide-wasm32-wasi@4.1.8": {
       "integrity": "sha512-CXBPVFkpDjM67sS1psWohZ6g/2/cd+cq56vPxK4JeawelxwK4YECgl9Y9TjkE2qfF+9/s1tHHJqrC4SS6cVvSg==",
@@ -1312,45 +1369,55 @@
       ],
       "cpu": ["wasm32"]
     },
+    "@tailwindcss/oxide-win32-arm64-msvc@4.1.10": {
+      "integrity": "sha512-i1Iwg9gRbwNVOCYmnigWCCgow8nDWSFmeTUU5nbNx3rqbe4p0kRbEqLwLJbYZKmSSp23g4N6rCDmm7OuPBXhDA==",
+      "os": ["win32"],
+      "cpu": ["arm64"]
+    },
     "@tailwindcss/oxide-win32-arm64-msvc@4.1.8": {
       "integrity": "sha512-7GmYk1n28teDHUjPlIx4Z6Z4hHEgvP5ZW2QS9ygnDAdI/myh3HTHjDqtSqgu1BpRoI4OiLx+fThAyA1JePoENA==",
       "os": ["win32"],
       "cpu": ["arm64"]
+    },
+    "@tailwindcss/oxide-win32-x64-msvc@4.1.10": {
+      "integrity": "sha512-sGiJTjcBSfGq2DVRtaSljq5ZgZS2SDHSIfhOylkBvHVjwOsodBhnb3HdmiKkVuUGKD0I7G63abMOVaskj1KpOA==",
+      "os": ["win32"],
+      "cpu": ["x64"]
     },
     "@tailwindcss/oxide-win32-x64-msvc@4.1.8": {
       "integrity": "sha512-fou+U20j+Jl0EHwK92spoWISON2OBnCazIc038Xj2TdweYV33ZRkS9nwqiUi2d/Wba5xg5UoHfvynnb/UB49cQ==",
       "os": ["win32"],
       "cpu": ["x64"]
     },
-    "@tailwindcss/oxide@4.1.8": {
-      "integrity": "sha512-d7qvv9PsM5N3VNKhwVUhpK6r4h9wtLkJ6lz9ZY9aeZgrUWk1Z8VPyqyDT9MZlem7GTGseRQHkeB1j3tC7W1P+A==",
+    "@tailwindcss/oxide@4.1.10": {
+      "integrity": "sha512-v0C43s7Pjw+B9w21htrQwuFObSkio2aV/qPx/mhrRldbqxbWJK6KizM+q7BF1/1CmuLqZqX3CeYF7s7P9fbA8Q==",
       "dependencies": [
         "detect-libc@2.0.4",
         "tar"
       ],
       "optionalDependencies": [
-        "@tailwindcss/oxide-android-arm64",
-        "@tailwindcss/oxide-darwin-arm64",
-        "@tailwindcss/oxide-darwin-x64",
-        "@tailwindcss/oxide-freebsd-x64",
-        "@tailwindcss/oxide-linux-arm-gnueabihf",
-        "@tailwindcss/oxide-linux-arm64-gnu",
-        "@tailwindcss/oxide-linux-arm64-musl",
-        "@tailwindcss/oxide-linux-x64-gnu",
-        "@tailwindcss/oxide-linux-x64-musl",
-        "@tailwindcss/oxide-wasm32-wasi",
-        "@tailwindcss/oxide-win32-arm64-msvc",
-        "@tailwindcss/oxide-win32-x64-msvc"
+        "@tailwindcss/oxide-android-arm64@4.1.10",
+        "@tailwindcss/oxide-darwin-arm64@4.1.10",
+        "@tailwindcss/oxide-darwin-x64@4.1.10",
+        "@tailwindcss/oxide-freebsd-x64@4.1.10",
+        "@tailwindcss/oxide-linux-arm-gnueabihf@4.1.10",
+        "@tailwindcss/oxide-linux-arm64-gnu@4.1.10",
+        "@tailwindcss/oxide-linux-arm64-musl@4.1.10",
+        "@tailwindcss/oxide-linux-x64-gnu@4.1.10",
+        "@tailwindcss/oxide-linux-x64-musl@4.1.10",
+        "@tailwindcss/oxide-wasm32-wasi@4.1.10",
+        "@tailwindcss/oxide-win32-arm64-msvc@4.1.10",
+        "@tailwindcss/oxide-win32-x64-msvc@4.1.10"
       ],
       "scripts": true
     },
-    "@tailwindcss/vite@4.1.8_vite@6.3.5__picomatch@4.0.2__jiti@2.4.2": {
-      "integrity": "sha512-CQ+I8yxNV5/6uGaJjiuymgw0kEQiNKRinYbZXPdx1fk5WgiyReG0VaUx/Xq6aVNSUNJFzxm6o8FNKS5aMaim5A==",
+    "@tailwindcss/vite@4.1.10_vite@6.3.5__jiti@2.4.2__picomatch@4.0.2": {
+      "integrity": "sha512-QWnD5HDY2IADv+vYR82lOhqOlS1jSCUUAmfem52cXAhRTKxpDh3ARX8TTXJTCCO7Rv7cD2Nlekabv02bwP3a2A==",
       "dependencies": [
         "@tailwindcss/node",
         "@tailwindcss/oxide",
         "tailwindcss",
-        "vite@6.3.5_picomatch@4.0.2_jiti@2.4.2"
+        "vite"
       ]
     },
     "@tanstack/virtual-core@3.13.9": {
@@ -1483,14 +1550,14 @@
         "@babel/plugin-transform-typescript",
         "@rolldown/pluginutils",
         "@vue/babel-plugin-jsx",
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2",
+        "vite",
         "vue"
       ]
     },
     "@vitejs/plugin-vue@5.2.4_vite@6.3.5__jiti@2.4.2__picomatch@4.0.2_vue@3.5.16__typescript@5.8.3_jiti@2.4.2_typescript@5.8.3": {
       "integrity": "sha512-7Yx/SXSOcQq5HiiV3orevHUFn+pmMB4cgbEkDYgnkUWb0WfeQ/wa2yFv6D5ICiCQOVpjA7vYDXrC7AGO8yjDHA==",
       "dependencies": [
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2",
+        "vite",
         "vue"
       ]
     },
@@ -3275,8 +3342,8 @@
         "yallist@3.1.1"
       ]
     },
-    "lucide-vue-next@0.513.0_vue@3.5.16__typescript@5.8.3_typescript@5.8.3": {
-      "integrity": "sha512-/J7DB2WBC+UPcRswOfJFXSWt8r5HTMVu0PRkR6e0+Ozx6kLJZv4m71vbT1DS9RCjj0pfuLskWIslSBeeXmg7BA==",
+    "lucide-vue-next@0.516.0_vue@3.5.16__typescript@5.8.3_typescript@5.8.3": {
+      "integrity": "sha512-bEfA+6Pp4tJBKt1UTVeXY6JOp4m2jZunyxud/Vy/t2Y59ABF8T9EEOjfZHoM58Xwaac2AIUFFohB6eiIpC6GKw==",
       "dependencies": [
         "vue"
       ]
@@ -4684,11 +4751,11 @@
     "system-architecture@0.1.0": {
       "integrity": "sha512-ulAk51I9UVUyJgxlv9M6lFot2WP3e7t8Kz9+IS6D4rVba1tR9kON+Ey69f+1R4Q8cd45Lod6a4IcJIxnzGc/zA=="
     },
-    "tailwind-merge@3.3.0": {
-      "integrity": "sha512-fyW/pEfcQSiigd5SNn0nApUOxx0zB/dm6UDU/rEwc2c3sX2smWUNbapHv+QRqLGVp9GWX3THIa7MUGPo+YkDzQ=="
+    "tailwind-merge@3.3.1": {
+      "integrity": "sha512-gBXpgUm/3rp1lMZZrM/w7D8GKqshif0zAymAhbCyIt8KMe+0v9DQ7cdYLR4FHH/cKpdTXb+A/tKKU3eolfsI+g=="
     },
-    "tailwindcss@4.1.8": {
-      "integrity": "sha512-kjeW8gjdxasbmFKpVGrGd5T4i40mV5J2Rasw48QARfYeQ8YS9x02ON9SFWax3Qf616rt4Cp3nVNIj6Hd1mP3og=="
+    "tailwindcss@4.1.10": {
+      "integrity": "sha512-P3nr6WkvKV/ONsTzj6Gb57sWPMX29EPNPopo7+FcpkQaNsrNpZ1pv8QmrYI2RqEKD7mlGqLnGovlcYnBK0IqUA=="
     },
     "tapable@2.2.2": {
       "integrity": "sha512-Re10+NauLTMCudc7T5WLFLAwDhQ0JWdrMK+9B2M8zR5hRExKmsRDCBA7/aV/pNJFltmBFO5BAMlQFi/vq3nKOg=="
@@ -4996,14 +5063,14 @@
       "integrity": "sha512-FxSTEofDbUi2XXujCA+hdzCDkXFG1PXktMjSk1efq9Qb5lOYaaM9zNSvKvPPF7645Bak79kSp1PTooMW2wktcA==",
       "dependencies": [
         "birpc",
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2",
+        "vite",
         "vite-hot-client"
       ]
     },
     "vite-hot-client@2.0.4_vite@6.3.5__jiti@2.4.2__picomatch@4.0.2_jiti@2.4.2": {
       "integrity": "sha512-W9LOGAyGMrbGArYJN4LBCdOC5+Zwh7dHvOHC0KmGKkJhsOzaKbpo/jEjpPKVHIW0/jBWj8RZG0NUxfgA8BxgAg==",
       "dependencies": [
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2"
+        "vite"
       ]
     },
     "vite-node@3.2.3_jiti@2.4.2": {
@@ -5013,7 +5080,7 @@
         "debug",
         "es-module-lexer",
         "pathe@2.0.3",
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2"
+        "vite"
       ],
       "bin": true
     },
@@ -5029,7 +5096,7 @@
         "tiny-invariant",
         "tinyglobby",
         "typescript",
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2",
+        "vite",
         "vscode-uri"
       ],
       "optionalPeers": [
@@ -5047,7 +5114,7 @@
         "perfect-debounce",
         "sirv",
         "unplugin-utils",
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2",
+        "vite",
         "vite-dev-rpc"
       ]
     },
@@ -5059,30 +5126,11 @@
         "magic-string",
         "pathe@2.0.3",
         "source-map-js",
-        "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2",
+        "vite",
         "vue"
       ]
     },
     "vite@6.3.5_jiti@2.4.2_picomatch@4.0.2": {
-      "integrity": "sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==",
-      "dependencies": [
-        "esbuild",
-        "fdir",
-        "jiti",
-        "picomatch@4.0.2",
-        "postcss",
-        "rollup",
-        "tinyglobby"
-      ],
-      "optionalDependencies": [
-        "fsevents"
-      ],
-      "optionalPeers": [
-        "jiti"
-      ],
-      "bin": true
-    },
-    "vite@6.3.5_picomatch@4.0.2_jiti@2.4.2": {
       "integrity": "sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==",
       "dependencies": [
         "esbuild",
@@ -5295,17 +5343,17 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
-        "npm:@tailwindcss/vite@^4.1.8",
+        "npm:@tailwindcss/vite@^4.1.10",
         "npm:@vueuse/core@^13.3.0",
         "npm:class-variance-authority@~0.7.1",
         "npm:clsx@^2.1.1",
-        "npm:lucide-vue-next@0.513",
+        "npm:lucide-vue-next@0.516",
         "npm:nuxt-vitalizer@0.10.0",
         "npm:nuxt@^3.17.5",
         "npm:reka-ui@^2.3.1",
         "npm:shadcn-nuxt@2.2.0",
-        "npm:tailwind-merge@^3.3.0",
-        "npm:tailwindcss@^4.1.8",
+        "npm:tailwind-merge@^3.3.1",
+        "npm:tailwindcss@^4.1.10",
         "npm:tw-animate-css@^1.3.4",
         "npm:typescript@^5.8.3",
         "npm:vue-router@^4.5.1",
